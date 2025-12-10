@@ -1,5 +1,8 @@
 name: Day 3 AOD Action
-on: [push, pull_request]
+on: 
+  push:
+    branches:
+      - main
 
 jobs:
   test:
