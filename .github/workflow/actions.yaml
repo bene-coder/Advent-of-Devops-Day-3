@@ -1,0 +1,26 @@
+name: Day 3 AOD Action
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Build and Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code 
+        uses: actions/checkout@v4
+        # Setting up Node.js Environment
+      - name: Set up Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          cache: 'npm'
+         # Installing Dependencies
+      - name: Install Dependencies
+        run: npm ci
+       # Running Unit Tests
+      - name: Run Unit Tests
+        run: npm test
+       # Generating Test Report
+      - name: Run Tests and Generate Report
+        run: npm test -- --coverage --reporter=junit --outputFile=test-result.xml || true  
